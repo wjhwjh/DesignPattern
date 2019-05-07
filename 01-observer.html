@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>Observer</title>
+</head>
+<body>
+
+
+<script>
+   // "use strict";
+
+   // 定义一个publisher对象
+    var publisher = {
+        subscribers: {
+            any: [] // event type: subscribers 存放的都是函数事件数组
+        },
+
+
+        //把事件添加subscribers数组中
+        subscribe: function (fn, type) {
+            type = type || 'any';
+            if (typeof this.subscribers[type] === "undefined") {
+                this.subscribers[type] = [];
+            }
+            this.subscribers[type].push(fn); //存入到数组中
+        },
+
+        //删除指定的某个方法
+        unsubscribe: function (fn, type) {
+            this.visitSubscribers('unsubscribe', fn, type);
+        },
+
+        // 执行参数列表中所有的方法
+        publish: function (publication, type) {
+            this.visitSubscribers('publish', publication, type);
+        },
+
+
+        // 具体的执行函数，根据参数不同，做不同的事情
+        visitSubscribers: function (action, arg, type) {
+            var pubtype = type || 'any',
+                subscribers = this.subscribers[pubtype],
+                i,
+                max = subscribers.length;
+
+            // console.log(this.subscribers);
+
+            for (i = 0; i < max; i += 1) {
+                if (action === 'publish') { // 如果参数是public执行
+                    subscribers[i](arg);
+                } else {
+                    if (subscribers[i] === arg) { //否则删除
+                        subscribers.splice(i, 1);
+                    }
+                }
+            }
+        }
+    };
+
+
+    //测试案例
+/*    var s1 = {log: console.log},
+        s2 = {err: console.error},
+        s3 = {warn: console.warn};*/
+
+
+   /* publisher.subscribe(s1.log);
+    publisher.subscribe(s2.err);
+    publisher.subscribe(s3.warn);
+
+    publisher.publish({hello: "World"});
+
+    publisher.unsubscribe(s2.err);
+    publisher.publish("hello");*/
+
+    // 指定类型
+/*    publisher.subscribe(s1.log, "log");
+    publisher.publish({obj: "log this object"}, "log");*/
+
+
+
+    function makePublisher(o) {
+        var i;
+        for (i in publisher) {
+            if (publisher.hasOwnProperty(i) && typeof publisher[i] === "function") {
+                o[i] = publisher[i];  // 浅拷贝到,覆盖掉publisher中相同的方法
+            }
+        }
+        o.subscribers = {any: []};
+    }
+
+    var paper = {
+       daily: function () {
+           //console.log(this);
+           this.publish("big news today");
+       },
+       monthly: function () {
+           this.publish("interesting analysis", "monthly");
+       }
+   };
+
+    makePublisher(paper);
+
+    var joe = {
+       drinkCoffee: function (paper) {
+           console.log('Just read ' + paper);
+       },
+       sundayPreNap: function (monthly) {
+           console.log('About to fall asleep reading this ' + monthly);
+       }
+   };
+
+    paper.subscribe(joe.drinkCoffee);
+    paper.subscribe(joe.sundayPreNap, 'monthly');
+    paper.daily();
+    paper.daily();
+    paper.daily();
+    paper.monthly();
+
+
+    makePublisher(joe);
+
+    joe.tweet = function (msg) {
+        this.publish(msg);
+    };
+
+    paper.readTweets = function (tweet) {
+        //alert('Call big meeting! Someone ' + tweet);
+    };
+
+    joe.subscribe(paper.readTweets);
+
+    joe.tweet("hated the paper today");
+</script>
+
+</body></html>

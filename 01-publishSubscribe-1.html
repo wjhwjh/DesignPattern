@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var pubsub = {};
+    (function (q) {
+        var topics = {},
+            subUid = -1;
+        // 发布或广播事件，包含特定的topic名称和参数（比如传递的数据）￼
+        q.publish = function (topic, args) {
+            if (!topics[topic]) {
+                return false;
+            }
+            var subscribers = topics[topic],
+                len = subscribers ? subscribers.length : 0;
+            while (len--) {
+                subscribers[len].func(topic, args);
+            }
+            return this;
+        };
+        // 通过特定的名称和回调函数订阅事件，topic/event触发时执行事件￼
+        q.subscribe = function (topic, func) {
+            if (!topics[topic]) {
+                topics[topic] = [];
+            }
+            var token = (++subUid).toString();
+            topics[topic].push({
+                token: token,
+                func: func
+            });
+            return token;
+        };
+        //基于订阅上的标记引用，通过特定topic取消订阅￼
+        q.unsubscribe = function (token) {
+            for (var m in topics) {
+                if (topics[m]) {
+                    for (var i = 0, j = topics[m].length; i < j; i++) {
+                        if (topics[m][i].token === token) {
+                            topics[m].splice(i, 1);
+                            return token;
+                        }
+                    }
+                }
+            }
+            return this;
+        };
+    }(pubsub));
+
+
+
+    // 返回稍后界面上要用到的当前本地时间￼
+    getCurrentTime = function (){
+        var date = new Date(),
+        m = date.getMonth() + 1,
+            d = date.getDate(),
+            y = date.getFullYear(),
+            t = date.toLocaleTimeString().toLowerCase();
+          return (m + "/" + d + "/" + y + " " + t);
+    };
+    // 向网格组件上添加新数据行
+    function addGridRow( data ) {
+        // ui.grid.addRow( data );
+        console.log( "updated grid component with:" + data );
+    }
+    // 更新网格上的最新更新时间
+    function updateCounter( data ) {
+        // ui.grid.updateLastChanged( getCurrentTime() );
+        console.log( "data last updated at: " + getCurrentTime() + " with "
+  + data);
+    }
+    // 使用传递给订阅者的数据data更新网格
+    gridUpdate = function( topic, data ){
+      if ( data !== "undefined" ) {
+          /*grid.addGridRow( data );
+          grid.updateCounter( data );*/
+           addGridRow( data );
+           updateCounter( data );
+
+      }
+    };
+
+    // 在newDataAvailable topic上创建一个订阅
+    var subscriber = pubsub.subscribe( "newDataAvailable", gridUpdate );
+
+
+    // 下面的代码描绘了数据层，一般应该使用ajax请求获取最新的数据后，告知程序有最新数据
+    // 发布者更新gridUpdate topic来展示新数据项
+    pubsub.publish( "newDataAvailable", {
+      summary: "Apple made $5 billion",
+      identifier: "APPL",
+      stockPrice: 570.91
+    });
+    pubsub.publish( "newDataAvailable", {
+      summary: "Microsoft made $20 million",
+      identifier: "MSFT",
+      stockPrice: 30.85
+    });
+
+</script>
+</body>
+</html>

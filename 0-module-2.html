@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>封装一个购物车</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+            list-style: none;
+            box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei';
+            background: #fff;
+
+        }
+
+        .shop {
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .shop span {
+            color: #fff;
+            font-size: 14px;
+            padding: 10px;
+            display: inline-block;
+            background: #ccc;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .shop i {
+            font-style: normal;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="shop" id="shop"><span>-</span> <i>0</i> <span>+</span></div>
+
+<script>
+    /*
+    *  模块模型
+    * */
+    let shop = document.getElementById('shop');
+    let spanBtn = shop.getElementsByTagName('span');
+    let num = shop.getElementsByTagName('i')[0];
+
+
+    /*
+    封装一个计算器
+    * 使用模块模式实现 
+    * */
+    let counter = (function () {
+        let count = 0;
+        /*私有方法*/
+       function restCounter() {
+           if(count<0)count=0;
+       }
+
+       //共有方法，暴露在外面的
+       function incrementCounter() {
+           return ++count;
+       }
+
+       function reduceCounter() {
+           --count;
+           restCounter();
+           return count;
+       }
+        return {
+            addNum:  incrementCounter,
+            reduce: reduceCounter
+        };
+    })();
+
+    spanBtn[1].onclick = () => {
+        num.innerHTML = counter.addNum();
+    }
+    spanBtn[0].onclick = () => {
+        num.innerHTML = counter.reduce();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+  /*
+  *  模块模型
+  * */
+  
+  var testModule = (function () {
+      var counter = 0;
+      return {
+          incrementCounter: function () {
+              console.log(this);
+              return ++counter;
+          },
+          resetCounter: function () {
+              counter = 0;
+          }
+      }
+  })();
+
+  testModule.incrementCounter();
+  testModule.incrementCounter();
+  testModule.incrementCounter();
+  testModule.incrementCounter();
+  testModule.incrementCounter();
+  testModule.resetCounter();
+  testModule.incrementCounter();
+
+</script>
+</body>
+</html>

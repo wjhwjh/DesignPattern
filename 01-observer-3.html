@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="box"></div>
+
+<button id="bigBtn">大按钮</button>
+
+
+
+<script>
+    let box = document.getElementById('box');
+    let bigBtn = document.getElementById('bigBtn');
+    function fn(val) {
+        val = val || '这是一个参数';
+         console.log(val);
+         alert(val);
+    }
+   /*
+   // 第一种方法
+   bigBtn['onclick'] = function () {
+         fn();
+     };*/
+
+   // 第二种方法
+   // bigBtn['onclick'] = fn;
+
+
+   // 第三种方法
+   bigBtn['onclick'] = new Function('fn("这是传递的参数")');
+
+
+
+
+    // 在创建DOM元素的时，绑定事件方法、并为DOM元素挂载属性和方法
+    for (let i =0; i<10; i++) {
+        let btn = document.createElement('button');
+        btn.innerHTML = '按钮';
+        btn.index = i;
+        btn.Update = function () {
+            alert( btn.index)
+        };
+        btn['onclick']=function(){
+            this.Update();
+            console.log(typeof this);
+        }
+        box.appendChild(btn);
+    }
+
+
+</script>
+
+
+</body>
+</html>
