@@ -7,49 +7,67 @@
 <body>
 <script>
 
-    var pubsub = {};
+    let pubsub = {};
+
+    // 定义一个立即执行的匿名函数，生成独立的作用域
     (function (q) {
-        var topics = {},
+        let topicObj = {},
             subUid = -1;
-        // 发布或广播事件，包含特定的topic名称和参数（比如传递的数据）￼
-        q.publish = function (topic, args) {
-            if (!topics[topic]) {
-                return false;
+
+        // 订阅方法，也是添加函数的方法
+        // topic是作为动态的属性名， fn是对应的执行函数
+        q.subscribe = (topic, fn) =>{
+            // 判断topicObj对象中是否有对应的topic属性，如果没有则设置为数组
+            if(!topicObj[topic]){
+                topicObj[topic] = []
             }
-            var subscribers = topics[topic],
-                len = subscribers ? subscribers.length : 0;
-            while (len--) {
-                subscribers[len].func(topic, args);
-            }
-            return this;
-        };
-        // 通过特定的名称和回调函数订阅事件，topic/event触发时执行事件￼
-        q.subscribe = function (topic, func) {
-            if (!topics[topic]) {
-                topics[topic] = [];
-            }
-            var token = (++subUid).toString();
-            topics[topic].push({
-                token: token,
-                func: func
-            });
+
+            // 下标计算，是属性值，所以要转化为字符串
+            let token = (++subUid).toString()
+
+            // 添加到数组中
+            topicObj[topic].push({
+                token:token,
+                fn:fn
+            })
+
+            //console.log( topicObj )
+            //return唯一的标识符token，用于删除指定的项
             return token;
-        };
-        //基于订阅上的标记引用，通过特定topic取消订阅￼
-        q.unsubscribe = function (token) {
-            for (var m in topics) {
-                if (topics[m]) {
-                    for (var i = 0, j = topics[m].length; i < j; i++) {
-                        if (topics[m][i].token === token) {
-                            topics[m].splice(i, 1);
-                            return token;
-                        }
-                    }
-                }
+        }
+
+        // 发布方法，也是执行函数
+        q.publish = (topic, args)=> {
+            console.log(args)
+
+            if(!topicObj[topic])return;
+
+            // 获取指定topic属性项，并获取长度
+            let subscribes =  topicObj[topic],
+                len = subscribes.length;
+
+            // 遍历并执行
+            while (len--){
+                 // 回调函数有2个参数，一个表示属于对像的属性，另一个则是变量，在定义函数的时候要注意
+                subscribes[len].fn(topic, args);
             }
             return this;
-        };
-    }(pubsub));
+        }
+
+        //  删除订阅者，即对象中指定的属性，也就是对应动态添加的函数
+        q.delScribe = (token)=>{
+            for(let key in topicObj){
+                topicObj[key].forEach((item, i)=>{
+                    if(item.token===token){
+                        topicObj[key].splice(i,1)
+                    }
+                })
+            }
+            console.log( topicObj )
+            return this;
+        }
+
+    })(pubsub);
 
 
 
@@ -66,6 +84,7 @@
     // 向网格组件上添加新数据行
     function addGridRow( data ) {
         // ui.grid.addRow( data );
+        console.log(data)
         console.log( "updated grid component with:" + data.stockPrice );
     }
     // 更新网格上的最新更新时间
@@ -76,6 +95,8 @@
     }
     // 使用传递给订阅者的数据data更新网格
     gridUpdate = function( topic, data ){
+        console.log(data)
+
       if ( data !== "undefined" ) {
           /*grid.addGridRow( data );
           grid.updateCounter( data );*/

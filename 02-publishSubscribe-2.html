@@ -14,10 +14,7 @@
     * 有一个函数，所传参数不同执行结果不同；
     *
     * 另一个函数，所传参数不同执行结果不同... 有很多参数
-    *
-    * 正常情况我们会把代码罗列下来，就像积木一样， 这样看起来整个代码比较杂乱，如果函数之间相互调用会更乱，也不易于维护。有问题就要解决，聪明的前辈们根据现象，思考出
-    * 代码管理代码的方式，也就是设计模式。设计模式，更是对功能函数以数据的形式进行管理，使得代码看起来不仅高大上，模块性也特别强。
-    *
+
     *基于上述问题解决方法
     *
     * 模块功能
@@ -26,13 +23,94 @@
     *
     *topics= {
           "topic1":[{token:0, fn}],
-          "topic2":[{token:0, fn1}],
-          "topic3":[{token:0, fn2}]
+          "topic2":[{token:1, fn1}],
+          "topic3":[{token:2, fn2}],
+          "topic3":[{token:3, fn2}]
          }
     *
     *
+    *定义一个全局对象，把处理上述添加对应的执行函数，以及根据参数执行功能函数挂载到这个对象上。
     *
     * */
+
+    // 定义一个全局对象，挂载处理函数事件
+
+    let pubsub = {};
+
+    // 定义一个立即执行的匿名函数，生成独立的作用域
+    (function (q) {
+        let topicObj = {},
+            subUid = -1;
+
+        // 订阅方法，也是添加函数的方法
+        // topic是作为动态的属性名， fn是对应的执行函数
+        q.subscribe = (topic, fn) =>{
+            // 判断topicObj对象中是否有对应的topic属性，如果没有则设置为数组
+            if(!topicObj[topic]){
+                topicObj[topic] = []
+            }
+
+            // 下标计算，是属性值，所以要转化为字符串
+            let token = (++subUid).toString()
+
+            // 添加到数组中
+            topicObj[topic].push({
+                token:token,
+                fn:fn
+            })
+
+            //console.log( topicObj )
+            //return唯一的标识符token，用于删除指定的项
+            return token;
+        }
+
+        // 发布方法，也是执行函数
+        q.publish = (topic, args)=> {
+            if(!topicObj[topic])return;
+
+            // 获取指定topic属性项，并获取长度
+            let subscribes =  topicObj[topic],
+                len = subscribes.length;
+
+            //console.log(--len);
+
+            // 遍历并执行
+            while (len--){
+                // 回调函数有2个参数，一个表示属于对像的属性，另一个则是变量，在定义函数的时候要注意
+                subscribes[len].fn(topic, args);
+            }
+            return this;
+        }
+
+        //  删除订阅者，即对象中指定的属性，也就是对应动态添加的函数
+         q.delScribe = (token)=>{
+            for(let key in topicObj){
+                topicObj[key].forEach((item, i)=>{
+                    if(item.token===token){
+                        topicObj[key].splice(i,1)
+                    }
+                })
+            }
+             console.log( topicObj )
+             return this;
+         }
+
+
+    })(pubsub);
+
+    //console.log(pubsub);
+
+    //测试
+    let msg = (data)=>{
+        // 这里还可以执行其它相关的函数
+        console.log('data---',data);
+    }
+
+    pubsub.subscribe('test', msg);
+    pubsub.publish('test', '这是数据');
+    //pubsub.delScribe('0');
+
+
 
 
 </script>
