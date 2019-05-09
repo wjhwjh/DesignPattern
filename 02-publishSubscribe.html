@@ -26,7 +26,7 @@
     (function (q) { // 匿名函数的参数是一个对象
         // 声明一个topics对象
         var topics = {},
-            subUid = -1;
+            subUid = -1; // 标记唯一性
 
 
         // 发布或广播事件，包含特定的topic名称和参数（比如传递的数据）
@@ -36,7 +36,7 @@
             if (!topics[topic]) {
                 return false;
             }
-            //console.log(topics);
+            console.log(topics);
 
             var subscribers = topics[topic],
                 len = subscribers ? subscribers.length : 0;
@@ -70,6 +70,8 @@
             }
             var token = (++subUid).toString();
 
+            console.log(token);
+
             // 回调函数和编号
             topics[topic].push({
                 token: token,
@@ -95,6 +97,7 @@
                     }
                 }
             }
+            console.log(topics);
             return this;
         };
     }(pubsub));
@@ -116,28 +119,26 @@
     var subscription1 = pubsub.subscribe("inbox/newMessage1", messageLogger1);
     var subscription3 = pubsub.subscribe("inbox/newMessage2", messageLogger1);
     var subscription4 = pubsub.subscribe("inbox/newMessage2", messageLogger);
+    // pubsub.unsubscribe("0");
 
-
-    //console.log(subscription);
+    // console.log(subscription);
 
     // 发布者负责发布程序感兴趣的topic或通知，例如：
     pubsub.publish("inbox/newMessage", "hello world!");
 
 
     // 或者
-    pubsub.publish("inbox/newMessage", ["test", "a", "b", "c"]);
-    /*
+    pubsub.publish("inbox/newMessage2", ["test", "a", "b", "c"]);
+
+   // 或者
+   pubsub.publish("inbox/newMessage", {
+       sender: "hello@google.com",
+       body: "Hey again!"
+   });
 
 
-           // 或者
-           pubsub.publish("inbox/newMessage", {
-               sender: "hello@google.com",
-               body: "Hey again!"
-           });*/
-
-
-    // 如果订阅者不想被通知了，也可以取消订阅￼
-    // 一旦取消订阅，下面的代码执行后将不会记录消息，因为订阅者不再进行监听了￼
+    // 如果订阅者不想被通知了，也可以取消订阅
+    // 一旦取消订阅，下面的代码执行后将不会记录消息，因为订阅者不再进行监听了
     //pubsub.publish("inbox/newMessage", 'Hello world')
 
 
