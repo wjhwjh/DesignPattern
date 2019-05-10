@@ -3,8 +3,14 @@
 <head>
     <title>Keypress challenge</title>
     <style>
-        #results {text-align: center; font-size: 36px;}
-        strong {color: blue;}
+        #results {
+            text-align: center;
+            font-size: 36px;
+        }
+
+        strong {
+            color: blue;
+        }
     </style>
 </head>
 <body>
@@ -17,6 +23,14 @@
         subscribers: {
             any: []
         },
+
+        /*
+        * {
+        *  game1: [{fn:fn, context: context},],
+        *
+        * }
+        * */
+        // fn是回调函数
         on: function (type, fn, context) {
             type = type || 'any';
             fn = typeof fn === "function" ? fn : context[fn];
@@ -25,13 +39,22 @@
                 this.subscribers[type] = [];
             }
             this.subscribers[type].push({fn: fn, context: context || this});
+
+            console.log(this.subscribers);
+
+
         },
+
+
         remove: function (type, fn, context) {
             this.visitSubscribers('unsubscribe', type, fn, context);
         },
+
         fire: function (type, publication) {
             this.visitSubscribers('publish', type, publication);
         },
+
+        //
         visitSubscribers: function (action, type, arg, context) {
             var pubtype = type || 'any',
                 subscribers = this.subscribers[pubtype],
@@ -48,6 +71,8 @@
                 }
             }
         }
+
+
     };
 
 
@@ -61,6 +86,7 @@
         o.subscribers = {any: []};
     }
 
+    // 游戏
     var game = {
 
         keys: {},
@@ -72,6 +98,8 @@
 
         handleKeypress: function (e) {
             e = e || window.event; // IE
+
+            console.log(game.keys);
             if (game.keys[e.which]) {
                 game.keys[e.which].play();
             }
@@ -91,10 +119,11 @@
         }
     };
 
+    // 玩家
     function Player(name, key) {
         this.points = 0;
-        this.name = name;
-        this.key  = key;
+        this.name = name; //姓名
+        this.key = key; // 编号
         this.fire('newplayer', this);
     }
 
@@ -103,12 +132,12 @@
         this.fire('play', this);
     };
 
-    var scoreboard = {
 
+    // 得分 同步到页面上
+    var scoreboard = {
         element: document.getElementById('results'),
 
         update: function (score) {
-
             var i, msg = '';
             for (i in score) {
                 if (score.hasOwnProperty(i)) {
@@ -120,35 +149,43 @@
             this.element.innerHTML = msg;
         }
     };
-
+    scoreboard.update({a: 1, b: 2, c: 3});
 
     makePublisher(Player.prototype);
     makePublisher(game);
 
+
+    console.log(game)
+    console.log(Player.prototype)
+
+
     Player.prototype.on("newplayer", "addPlayer", game);
-    Player.prototype.on("play",      "handlePlay", game);
+    Player.prototype.on("play", "handlePlay", game);
 
     game.on("scorechange", scoreboard.update, scoreboard);
 
-    window.onkeypress = game.handleKeypress;
+    //window.onkeypress = game.handleKeypress;
 
 
     var playername, key;
-    while (1) {
-        playername = prompt("Add player (name)");
-        if (!playername) {
-            break;
-        }
-        while (1) {
-            key = prompt("Key for " + playername + "?");
-            if (key) {
+    /*    while (1) {
+            playername = prompt("Add player (name)");
+            if (!playername) {
                 break;
             }
-        }
-        new Player(playername,  key);
-    }
+            while (1) {
+                key = prompt("Key for " + playername + "?");
+                if (key) {
+                    break;
+                }
+            }
+            new Player(playername,  key);
+        }*/
+    let p = new Player('huizi', 'win');
 
+    console.log(p)
 
 </script>
 
-</body></html>
+</body>
+</html>
