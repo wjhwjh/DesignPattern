@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+   /*
+   * 先看懂代码才能写代码
+   *
+   * 先听话，然后再说话
+   *
+   * */
+    var CreateDiv = (function () {
+        var instance;
+
+        var CreateDiv = function (html) {
+            if (instance) {
+                return instance;
+            }
+            this.html = html;
+            this.init();
+            return instance = this;
+        };
+
+        CreateDiv.prototype.init = function () {
+            var div = document.createElement('div');
+            div.innerHTML = this.html;
+            document.body.appendChild(div);
+        };
+        return CreateDiv;
+    })();
+    //console.log(new CreateDiv('11'));
+    //var aa = new CreateDiv('Sisi1');
+    var bb = new CreateDiv('Sisi2');
+
+
+    var MyApp = {};
+
+    //对象添加一个namespace属性
+    MyApp.namespace = function (name) {
+        //用'.'运算符切割name
+        var parts = name.split('.');
+
+        // 拷贝一份, 因为是对象，所以是浅拷贝
+        var current = MyApp;
+
+        // for...in 循环数组
+        for (var i in parts) {
+             //console.log(parts[i]);
+            if (!current[parts[i]]) {
+                current[parts[i]] = {};
+            }
+            //赋值, 改变了current就是改变了MyApp, MyApp是一个全局变量
+            current = current[parts[i]];
+        }
+    }
+
+  //  MyApp.namespace('event');
+    //MyApp.namespace('dom.style');
+    MyApp.namespace('dom.style');
+    console.log(MyApp);
+
+
+
+</script>
+
+
+</body>
+</html>
