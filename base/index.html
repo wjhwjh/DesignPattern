@@ -37,8 +37,10 @@
     var bb = new CreateDiv('Sisi2');
 
 
-    var MyApp = {};
 
+
+   /***********************动态创建命名空间**************************/
+    var MyApp = {};
     //对象添加一个namespace属性
     MyApp.namespace = function (name) {
         //用'.'运算符切割name
@@ -62,6 +64,39 @@
     //MyApp.namespace('dom.style');
     MyApp.namespace('dom.style');
     console.log(MyApp);
+
+
+    /************************使用闭包封装私有变量*************************/
+   var user = (function () {
+       var _name = 'Seven';
+       var _age = 27;
+
+       return  function () {
+           return _name + '-' + _age;
+       }
+   })();
+
+   console.log(user()) // Seven-27
+
+
+    /*********************闭包实现计数器************************/
+
+
+    var count = function () {
+        var a = 1;
+        return function () {
+            a++
+            console.log(a)
+        }
+    }
+
+    var c =  count();
+   c();
+   c();
+
+
+
+
 
 
 
