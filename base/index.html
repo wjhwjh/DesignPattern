@@ -15,7 +15,7 @@
     *
     * 先听话，然后再说话
     *
-    * 看懂，写、写出自己需要的代码
+    * 看懂，写、写出需求所需要的代码
     *
     *
     * */
@@ -33,6 +33,7 @@
             return instance = this;
         };
 
+        // 构造函数定义一个方法
         CreateDiv.prototype.init = function () {
             var div = document.createElement('div');
             div.innerHTML = this.html;
@@ -57,22 +58,42 @@
 
         // 拷贝一份, 因为是对象，所以是浅拷贝
         var current = MyApp;
-
+       // console.log(current === MyApp);
         // for...in 循环数组
-        for (var i in parts) {
-            //console.log(parts[i]);
+     /*   for (var i in parts) {
+            //console.log(current[parts[i]]);
+            //console.log(current === MyApp);
             if (!current[parts[i]]) {
                 current[parts[i]] = {};
             }
-            //赋值, 改变了current就是改变了MyApp, MyApp是一个全局变量
+
+            //赋值, 改变了current就是改变了MyApp, MyApp是一个全局变量,还是一个对象
+             current = current[parts[i]];
+
+            console.log(MyApp);
+        }*/
+
+        current[parts[0]] = {};
+        console.log(current);
+        current[parts[0]][parts[1]] = {};
+        console.log(current);
+        current[parts[0]][parts[1]][parts[2]] = {};
+        console.log(current);
+      /*  for (var i =0; i< parts.length; i++){
+            if(!current[parts[i]]){
+                current[parts[i]]={};
+            }
+            console.log(i, current);
+
             current = current[parts[i]];
-        }
+        }*/
+        //console.log(current);
     }
 
     //  MyApp.namespace('event');
     //MyApp.namespace('dom.style');
-    MyApp.namespace('dom.style');
-    console.log(MyApp);
+    MyApp.namespace('dom.style.div');
+     console.log(MyApp);
 
 
     /************************使用闭包封装私有变量*************************/
