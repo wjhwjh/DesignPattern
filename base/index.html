@@ -6,13 +6,21 @@
 </head>
 <body>
 
+
+<button id="loginBtn">按钮</button>
+
 <script>
-   /*
-   * 先看懂代码才能写代码
-   *
-   * 先听话，然后再说话
-   *
-   * */
+    /*
+    * 先看懂代码才能写代码
+    *
+    * 先听话，然后再说话
+    *
+    * 看懂，写、写出自己需要的代码
+    *
+    *
+    * */
+
+    // 单例模式，创建一个实例
     var CreateDiv = (function () {
         var instance;
 
@@ -32,14 +40,15 @@
         };
         return CreateDiv;
     })();
+
+
+
     //console.log(new CreateDiv('11'));
     //var aa = new CreateDiv('Sisi1');
     var bb = new CreateDiv('Sisi2');
 
 
-
-
-   /***********************动态创建命名空间**************************/
+    /***********************动态创建命名空间**************************/
     var MyApp = {};
     //对象添加一个namespace属性
     MyApp.namespace = function (name) {
@@ -51,7 +60,7 @@
 
         // for...in 循环数组
         for (var i in parts) {
-             //console.log(parts[i]);
+            //console.log(parts[i]);
             if (!current[parts[i]]) {
                 current[parts[i]] = {};
             }
@@ -60,23 +69,23 @@
         }
     }
 
-  //  MyApp.namespace('event');
+    //  MyApp.namespace('event');
     //MyApp.namespace('dom.style');
     MyApp.namespace('dom.style');
     console.log(MyApp);
 
 
     /************************使用闭包封装私有变量*************************/
-   var user = (function () {
-       var _name = 'Seven';
-       var _age = 27;
+    var user = (function () {
+        var _name = 'Seven';
+        var _age = 27;
 
-       return  function () {
-           return _name + '-' + _age;
-       }
-   })();
+        return function () {
+            return _name + '-' + _age;
+        }
+    })();
 
-   console.log(user()) // Seven-27
+    console.log(user()) // Seven-27
 
 
     /*********************闭包实现计数器************************/
@@ -90,12 +99,37 @@
         }
     }
 
-    var c =  count();
-   c();
-   c();
+    var c = count();
+    c();
+    c();
 
 
 
+    /***********************/
+
+    // 定义一个函数用来执行创建dom的函数
+    var getSingle = function (fn) {
+        var result;
+        return function () {
+            return result || (result = fn.apply(this, arguments));
+        }
+    }
+
+    // 创建dom的函数，把这个模块分离出来
+    var createLoginLayer = function () {
+        var div = document.createElement('div');
+        div.innerHTML = '我是一个小小的悬浮框';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+        return div;
+    }
+
+    var createSingleLoginLayer = getSingle(createLoginLayer);
+
+    document.getElementById('loginBtn').addEventListener('click', function () {
+        var loginLayer = createSingleLoginLayer();
+        loginLayer.style.display = 'block';
+    });
 
 
 
