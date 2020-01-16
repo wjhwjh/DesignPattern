@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>策略模式</title>
+</head>
+<body>
+    <!--
+      策略模式，最大的特点就是返回值，使用return返回;
+
+      使用某一种方式实现功能，使用return返回
+    -->
+
+
+    <script>
+        var fn = (function(){
+            var obj ={
+                return30:function (price) {
+                    return price-30;
+                },
+                return50:function (price) {
+                    return price-50;
+                }
+            };
+
+            return function (classes, price) {
+                return obj[classes](price);
+            }
+        })();
+
+       console.log(fn("return30", 200));
+
+        console.log(fn("return50", 200));
+    </script>
+</body>
+</html>

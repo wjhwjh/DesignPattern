@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>参与者模式</title>
+</head>
+<body>
+
+<button id="but">按钮</button>
+
+
+ <!--函数之间的一种关系，通过参数来体现，参数复用-->
+
+ <script>
+   function  bind(fn, context) {
+       var args = [].slice.call(arguments,2);
+
+       return function () {
+           var allArgs = args.concat([].slice.call(arguments));
+           return fn.apply(context,allArgs); //context是this的指向，allArgs是所传的实参
+       }
+   }
+  var demofn = function () {
+      console.log( arguments );
+      console.log( this );
+      this.style.width = 80 + 'px';
+  };
+
+   var bunfn = bind(demofn, but,{name: "wulv"});
+   bunfn({age:18});
+   bunfn({age:182});
+     but.addEventListener('click',bunfn);
+
+ </script>
+</body>
+</html>

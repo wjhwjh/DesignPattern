@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c684810-180f-48b7-a87f-cad5b0af9893" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/singlecase-0.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01-observer-0.html" beforeDir="false" afterPath="$PROJECT_DIR$/01-observer-0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01-observer-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/01-observer-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01-observer-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/01-observer-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01-observer-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/01-observer-4.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,35 +18,35 @@
     <session id="544379816">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="17" />
+          <entry key="project.open.time.0" value="8" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.3" value="3" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.3" value="6" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="20" />
+          <entry key="html" value="28" />
           <entry key="md" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="20" />
+          <entry key="HTML" value="28" />
           <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="3098" />
+          <entry key="html" value="4533" />
           <entry key="md" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="3098" />
+          <entry key="HTML" value="4533" />
           <entry key="PLAIN_TEXT" value="37" />
         </counts>
       </usages-collector>
@@ -58,15 +55,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/01-observer-1.html">
+        <entry file="file://$PROJECT_DIR$/singlecase-0.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+            <state relative-caret-position="473">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -89,6 +93,8 @@
         <option value="$PROJECT_DIR$/01-observer-0.html" />
         <option value="$PROJECT_DIR$/01-observer-3.html" />
         <option value="$PROJECT_DIR$/01-observer-1.html" />
+        <option value="$PROJECT_DIR$/base/index.html" />
+        <option value="$PROJECT_DIR$/singlecase-0.html" />
       </list>
     </option>
   </component>
@@ -99,10 +105,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="270" />
-    <option name="y" value="47" />
-    <option name="width" value="1721" />
-    <option name="height" value="1009" />
+    <option name="x" value="458" />
+    <option name="y" value="34" />
+    <option name="width" value="1446" />
+    <option name="height" value="982" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -110,7 +116,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,11 +127,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="F:/hBuilder/2019/yd-web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
@@ -163,12 +170,23 @@
       <workItem from="1557276448713" duration="6277000" />
       <workItem from="1557363550861" duration="7395000" />
       <workItem from="1557395777018" duration="807000" />
-      <workItem from="1557454314760" duration="12183000" />
+      <workItem from="1557454314760" duration="13339000" />
+      <workItem from="1557473313823" duration="106000" />
+      <workItem from="1557708576255" duration="915000" />
+      <workItem from="1557881273486" duration="1407000" />
+      <workItem from="1557968402928" duration="134000" />
+      <workItem from="1558001135933" duration="938000" />
+      <workItem from="1558073775843" duration="10363000" />
+      <workItem from="1558330413552" duration="172000" />
+      <workItem from="1558340843244" duration="6180000" />
+      <workItem from="1558402687141" duration="599000" />
+      <workItem from="1558503984331" duration="1717000" />
+      <workItem from="1558513697063" duration="1136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41510000" />
+    <option name="totallyTimeSpent" value="66333000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -180,9 +198,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="270" y="47" width="1721" height="1009" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18783543" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15063424" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -194,7 +212,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329849" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.43192488" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.1679644" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -209,13 +227,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/02-publishSubscribe.html" />
-    <entry file="file://$PROJECT_DIR$/02-publishSubscribe-0.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1450">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/02-publishSubscribe-1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1972">
@@ -237,27 +248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/01-observer-0.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="132" column="23" lean-forward="true" selection-start-line="132" selection-start-column="23" selection-end-line="132" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-observer-4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-observer-2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3813">
-          <caret line="44" column="3" selection-start-line="44" selection-start-column="3" selection-end-line="45" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/01-observer-3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -265,10 +255,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/02-publishSubscribe-0.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1450">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01-observer-0.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1972">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/01-observer-1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+        <state relative-caret-position="174">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01-observer-4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01-observer-2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/base/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-783">
+          <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/singlecase-0.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>

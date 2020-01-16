@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>参与者模式</title>
+</head>
+<body>
+
+
+
+
+ <!--函数之间的一种关系，通过参数来体现，参数复用-->
+
+ <script>
+
+     /*
+     * 参与者模式，原有的参数，新添加的参数进行合并、共用，
+     *
+     * */
+
+
+     /*arguments是指传递的实参的个数*/
+     var curry = function (fn) {
+        //把参数保存起来
+         var args=[].slice.call(arguments, 1); //从arguments类数组索引值1开始截取
+        // console.log(args);
+
+         return function (num1,num2) {
+             //console.log( arguments );
+             var allArgs =args.concat([].slice.call(arguments)); //参数拼接
+             fn.call(null, allArgs);//改变this指向，指向return返回的函数，也就是作为参数的函数
+         }
+     };
+     var fn = function () {
+         console.log(arguments);
+     };
+
+     var cfn = curry(fn, 2, 3); //第一次传递的参数
+
+     cfn(4,5); //第二次传递的参数
+
+
+ </script>
+</body>
+</html>

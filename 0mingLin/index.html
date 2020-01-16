@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>命令模式</title>
+</head>
+<body>
+
+   <button>这是一个按钮</button>
+  <!--命令模式-->
+  <script>
+      var Command = {
+          width:function (dom, width) {
+              dom.style.width = width + 'px';
+          },
+          execute:function (set, dom, val) {
+              this[set](dom, val);
+          }
+      }
+
+      Command.execute('width', button, 200)
+  </script>
+</body>
+</html>

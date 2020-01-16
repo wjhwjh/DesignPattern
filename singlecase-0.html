@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>单例模式</title>
+</head>
+<body>
+
+
+<script>
+   class Singlecase{
+       constructor(name){
+           this.name = name;
+       }
+       getName(){
+           console.log(this.name);
+       }
+   }
+
+   // 使用中间代理，实现单例模式，问题在调用的时候是否加new关键字， new Proxycase() 还是  Proxycase()
+   let Proxycase = (function () {
+       let instance = null;
+       return function (name) {
+           if(!instance){
+               instance = new Singlecase(name);
+           }
+           //console.log(instance == Singlecase);
+           return instance;
+       }
+   }())
+
+
+   //console.log(Singlecase);
+  let a = Proxycase('name');
+  let b = new Proxycase('name');
+  console.log(a === b);
+
+
+
+  /*
+  *
+  *
+  *
+  * */
+
+</script>
+
+</body></html>
